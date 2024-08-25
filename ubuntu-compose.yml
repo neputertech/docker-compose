@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  app:
+    image: rajeshisnepali/ubuntu:20.04
+    container_name: ubuntu
+    #restart: unless-stopped
+    volumes:
+      # - ~/.bash_history:/root/.bash_history
+    user: neputer
+    working_dir: /script
+    command: "tail -f /dev/null"
+
+networks:
+  default:
+    driver: bridge
+    name: ubuntu-network

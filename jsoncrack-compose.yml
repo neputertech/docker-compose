@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  jsoncrack:
+    image: jsoncrack  # need to build locally
+    container_name: jsoncrack
+    restart: unless-stopped
+    ports: 
+      - 8888:8080
+
+networks:
+  default:
+    name: jsoncrack-net

@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  mailcatcher:
+    restart: unless-stopped
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - 172.19.0.1:1090:8025
+      - 172.19.0.1:1035:1025

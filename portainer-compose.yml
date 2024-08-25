@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports: 
+      - 45002:45002
+      - 45000:9443
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+      - ~/Documents/local-certs:/certs:ro
+      - /etc/localtime:/etc/localtime:ro
+    command:
+      --sslcert /certs/portainer.crt
+      --sslkey /certs/portainer.key
+      --tunnel-port 45002
+    networks:
+      - nginx-proxy
+
+volumes:
+  portainer_data:
+    name: portainer_data
+
+networks:
+  nginx-proxy:
+    name: nginx-proxy
+

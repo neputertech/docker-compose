@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:7.4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:33071:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=rajeshchaudhary@neputer.com
+      - PGADMIN_DEFAULT_PASSWORD=defaultpassword
+
+networks:
+  default:
+    name: db-network

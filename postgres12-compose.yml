@@ -1,0 +1,16 @@
+# Use postgres/example user/password credentials
+version: '3.5'
+
+services:
+
+  db:
+    image: postgres:12
+    container_name: postgres_12
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      #POSTGRES_USER: postgres (optional)
+      #POSTGRES_DB: postgres (optional)
+    ports:
+      - 5433:5432

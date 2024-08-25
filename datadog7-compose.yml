@@ -1,0 +1,38 @@
+# export DD_API_KEY=""
+
+version: '3'
+services:
+  datadog:
+    image: gcr.io/datadoghq/agent:7
+    container_name: datadog-agent
+    restart: unless-stopped
+    pid: host
+    network_mode: host
+    environment:
+      - DD_API_KEY=${DD_API_KEY}
+      - DD_SITE=datadoghq.com
+      - DD_HOSTNAME=${HOST}
+      - DD_EXPVAR_PORT=5050    
+      - DD_CMD_PORT=5051 
+      - DD_LOGS_ENABLED=true
+      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+      - DD_PROCESS_AGENT_ENABLED=true
+      - DD_APM_ENABLED=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    #   - /sys/kernel/debug:/sys/kernel/debug
+    # cap_add:
+    #   - SYS_ADMIN
+    #   - SYS_RESOURCE
+    #   - SYS_PTRACE
+    #   - NET_ADMIN
+    #   - NET_BROADCAST
+    #   - NET_RAW
+    #   - IPC_LOCK
+    #   - CHOWN
+    # security_opt:
+    #   - apparmor:unconfined

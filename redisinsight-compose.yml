@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  redisinsight:
+    image: 'redislabs/redisinsight:latest'
+    volumes:
+      - redisinsight:/db
+    container_name: redisinsight
+    network_mode: host
+    # ports:
+    #   - "8001:8001"
+    
+volumes:
+  redisinsight:
+    name: redisinsight_data

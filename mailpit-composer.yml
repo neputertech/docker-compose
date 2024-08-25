@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  mailpit:
+    container_name: mailpit
+    restart: unless-stopped
+    volumes:
+      - ~/.mailpit:/data
+    environment:
+      - MP_DATA_FILE=/data/db
+      - TZ=Asia/Kathmandu
+    ports:
+      - '8027:8025'
+      - '1027:1025'
+    image: axllent/mailpit

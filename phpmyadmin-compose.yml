@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 172.19.0.1:8090:80
+    environment:
+      - UPLOAD_LIMIT=100M
+      - PMA_ARBITRARY=1
+      
+networks: 
+  default:
+    name: pma-network

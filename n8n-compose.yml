@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  portainer:
+    image: n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    ports: 
+      - 45001:5678
+    environment:
+      #- VUE_APP_URL_BASE_API=http://103.192.78.79:45001/
+      - VUE_APP_URL_BASE_API=https://automation.neputer.com.np/
+      - WEBHOOK_URL=https://automation.neputer.com.np/
+      - GENERIC_TIMEZONE=Asia/Kathmandu
+    volumes: 
+      - ~/.n8n:/home/node/.n8n
+
+networks:
+  default:
+    name: n8n-net
