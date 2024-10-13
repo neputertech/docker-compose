@@ -6,9 +6,17 @@ services:
     container_name: timescale
     restart: unless-stopped
     environment:
+      POSTGRESQL_CONF_DIR: /etc/postgresql
       POSTGRES_PASSWORD: root
       POSTGRES_USER: root
       #POSTGRES_USER: postgres (optional)
       #POSTGRES_DB: postgres (optional)
     ports:
       - 5432:5432
+    volumes:
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - postgres_data:/var/lib/postgresql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf 
+
+volumes:
+  postgres_data:
