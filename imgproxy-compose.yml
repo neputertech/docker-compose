@@ -1,0 +1,23 @@
+services:
+  imgproxy:
+    image: ghcr.io/imgproxy/imgproxy:latest
+    container_name: imgproxy
+    environment:
+      # Security keys (Use strong values and keep them secret)
+      # IMGPROXY_KEY: "7295b6433fa3c86ea77074dbe1684957974b03244a8b24c4e6b231d8d149fdcc"
+      # IMGPROXY_SALT: "ccb803f3bd7a5c9f12f040e4074ad8a0e6e20d6b919c28eb7744a8dd17750661a7b03f9ba539761da65c02fd866ed80cd21c19c489028832353df66bac6ebc19"
+
+      # Performance Settings
+      IMGPROXY_MAX_SRC_RESOLUTION: "10MP" # Limit source image resolution
+      IMGPROXY_MAX_SRC_FILE_SIZE: "10MB" # Limit source image size
+      IMGPROXY_MAX_MEMORY: "512MB"       # Limit memory usage
+
+      # allowed domains
+      IMGPROXY_ALLOWED_SOURCES: "https://*.neputer.com/, https://*.neputer.com.np/"
+
+      # Cache Control
+      # IMGPROXY_CACHE_CONTROL: "public, max-age=3600"
+
+    ports:
+      - 8080:8080
+    restart: unless-stopped
